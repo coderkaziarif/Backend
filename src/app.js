@@ -16,13 +16,15 @@ app.use(express.urlencoded({extended:true, limit:"16kb"}));
 app.use(express.static("public"));
 app.use(cookieParser);
 
-//&<=============import Rotes ========>
+//&<=============import Roters ========>
 import userRouter from './routes/user.routes';
+import kaziRouter from "./routes/kazi.routes";
 
 
 
 //^<========Route declaration=========>
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/kazi', kaziRouter)
 
 
 export {app}
