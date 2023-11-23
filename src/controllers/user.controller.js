@@ -32,7 +32,7 @@ if (
 };
 
 //^<======Check user Exists or Not========>
-const existingUser = User.findOne({
+const existingUser = await User.findOne({
     $or : [{userName}, {email}]
 });
 if(existingUser){
@@ -55,9 +55,9 @@ if (!profile) {
 }
 
 //^ <=======Create user obj==========>
-const userData = User.create({
+const userData = await User.create({
     fullName,
-    userName : userName.toLowercase(),
+    userName : userName.toLowerCase(),
     email,
     profilePic: profile.url,
     coverPic: cover?.url || "",
