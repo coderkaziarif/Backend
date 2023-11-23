@@ -18,13 +18,15 @@ app.use(cookieParser);
 
 //&<=============import Roters ========>
 import userRouter from './routes/user.routes';
-import kaziRouter from "./routes/kazi.routes";
+
+
 
 
 
 //^<========Route declaration=========>
 app.use('/api/v1/user', userRouter);
-app.use('/api/v1/kazi', kaziRouter)
+
+
 
 
 export {app}

@@ -26,7 +26,7 @@ const userSchema = new Schema (
             trim:true,
             index:true,
         },
-        avatar: {
+        profilePic: {
             type:String,//Cloudinary url
             required:true
         },
