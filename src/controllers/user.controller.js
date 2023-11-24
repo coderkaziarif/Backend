@@ -53,7 +53,7 @@ if (!profileLocalPath) {
 //^<======== img file upload in cloudinary=======>
 const profile = await uploadOnCloudinary(profileLocalPath);
 const cover = await uploadOnCloudinary(coverImageLocalPath);
-console.log({cover})
+
 
 
 if (!profile) {
@@ -69,13 +69,13 @@ const userData = await User.create({
     coverPic: cover?.url || "",
     password,
 });
-console.log("User Data:", userData);
+// console.log("User Data:", userData);
 
 //^<===========Remove password & refreshh token from response =======>
 const createdUser = await User.findById(userData._id).select(
     "-password -refreshToken"
 )
-console.log("Created User:", createdUser);
+// console.log("Created User:", createdUser);
 if (!createdUser) {
     throw new ApiError(500, "User Registration not completed !")
 }
