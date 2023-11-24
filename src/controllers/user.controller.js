@@ -52,8 +52,7 @@ if (!profileLocalPath) {
 //^<======== img file upload in cloudinary=======>
 const profile = await uploadOnCloudinary(profileLocalPath);
 const cover = await uploadOnCloudinary(coverImageLocalPath);
-// console.log({profile})
-// console.log({cover})
+
 
 if (!profile) {
     throw new ApiError(400,"Profile img is required !")
