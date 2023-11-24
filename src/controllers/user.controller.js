@@ -45,6 +45,7 @@ if(existingUser){
 const profileLocalPath = req?.files.profilePic[0]?.path;
 const coverImageLocalPath = req?.files.coverPic[0]?.path;
 
+
 if (!profileLocalPath) {
     throw new ApiError(400, "Profile Pic is required !");
 };
@@ -52,6 +53,7 @@ if (!profileLocalPath) {
 //^<======== img file upload in cloudinary=======>
 const profile = await uploadOnCloudinary(profileLocalPath);
 const cover = await uploadOnCloudinary(coverImageLocalPath);
+console.log({cover})
 
 
 if (!profile) {
@@ -67,12 +69,13 @@ const userData = await User.create({
     coverPic: cover?.url || "",
     password,
 });
+console.log("User Data:", userData);
 
 //^<===========Remove password & refreshh token from response =======>
 const createdUser = await User.findById(userData._id).select(
     "-password -refreshToken"
 )
-
+console.log("Created User:", createdUser);
 if (!createdUser) {
     throw new ApiError(500, "User Registration not completed !")
 }
