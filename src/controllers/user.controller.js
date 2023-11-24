@@ -1,10 +1,10 @@
-import { asyncHandler } from "../utils/asyncHandler";
-import {ApiError} from "../utils/ApiError";
-import {User} from "../models/user";
-import {uploadOnCloudinary} from "../utils/cloudinary";
-import {ApiResponse} from "../utils/ApiResponse";
-const registerUser = asyncHandler(async (req, res) => {
-  // res.status(200).json({
+import { asyncHandler } from "../utils/asyncHandler.js";
+import {ApiError} from "../utils/ApiError.js";
+import {User} from "../models/user.js";
+import {uploadOnCloudinary} from "../utils/cloudinary.js";
+import {ApiResponse} from "../utils/ApiResponse.js";
+
+// res.status(200).json({
   //     status:"success",
   //     message:"register done"
   // })
@@ -20,8 +20,11 @@ const registerUser = asyncHandler(async (req, res) => {
   //check for user creation
   //return response
   //=======================//
+const registerUser = asyncHandler(async (req, res) => {
+  
   //^<======Get User details from frontend=====>
   const { userName, fullName, email, password } = req.body;
+ 
 
   //^ <========Validation=========>
 if (
@@ -49,6 +52,8 @@ if (!profileLocalPath) {
 //^<======== img file upload in cloudinary=======>
 const profile = await uploadOnCloudinary(profileLocalPath);
 const cover = await uploadOnCloudinary(coverImageLocalPath);
+// console.log({profile})
+// console.log({cover})
 
 if (!profile) {
     throw new ApiError(400,"Profile img is required !")
